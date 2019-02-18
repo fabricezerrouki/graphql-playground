@@ -12,32 +12,33 @@ const Service = require('./database/service');
 
 const typeDefs = `
 type Query {
-	People: [PeopleObject]!
-  PeopleByName(lastName: String!): [PeopleObject]
-  PeopleByXid(Xid: String!): [PeopleObject]
-  PeopleByID(id:ID!): [PeopleObject]
-  Service: [ServiceObject]!
-  ServiceByID(id:ID!): [ServiceObject]
+	People:[People]
+  PeopleByName(lastName: String!):[People]
+  PeopleByXid(Xid: String!):[People]
+  PeopleByID(id:ID!):[People]
+  Service:[Service]
+  ServiceByID(id:ID!):[Service]
 }
-type PeopleObject {
-	  id: ID!
-    Xid: String!
-    firstName: String!
-    lastName: String!
-    email: String!
-    serviceId: String
-    apps: [String]
-    service: [ServiceObject]
+type People {
+	  id:ID!
+    Xid:String!
+    firstName:String!
+    lastName:String!
+    email:String!
+    serviceId:String
+    apps:[String]
+    service:Service
 }
-type ServiceObject {
-	  id: ID!
-    name: String!
-    location: String!
+type Service {
+	  id:ID!
+    name:String!
+    location:String!
+    peoples:[People]
 }
 type Mutation {
-	createPerson(Xid: String!, firstName: String!, lastName: String!, email: String!, serviceId: String, apps: [String]): PeopleObject
-  updatePerson(id: ID!,Xid: String, firstName: String, lastName: String, email: String, serviceId: String, apps: [String]): PeopleObject
-	deletePerson(id: ID!): PeopleObject
+	createPerson(Xid: String!, firstName: String!, lastName: String!, email: String!, serviceId: String, apps: [String]): People
+  updatePerson(id: ID!,Xid: String, firstName: String, lastName: String, email: String, serviceId: String, apps: [String]): People
+	deletePerson(id: ID!): People
 }
 `
 const resolvers = {
