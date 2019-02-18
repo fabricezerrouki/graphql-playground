@@ -6,7 +6,7 @@ const queries = {
     PeopleByID: (root,args,context,info) => People.find({_id: args.id}),
     PeopleByXid: (root,args,context,info) => People.find({Xid: args.Xid}),
     Service: () => Service.find({}),
-    ServiceByID: (root,args,context,info) => Service.find({_id: args.id}),
+    ServiceByID: (root,args,context,info) => Service.find({_id: args.id})
   };
 
 module.exports = queries;
