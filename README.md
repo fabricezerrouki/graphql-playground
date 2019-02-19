@@ -1,2 +1,2 @@
 # graphql-playground
-Application de test de GraphQL
+Application de test GraphQL
