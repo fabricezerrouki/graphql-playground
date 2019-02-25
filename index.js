@@ -20,7 +20,7 @@ type Query {
     ServiceByID(id:ID!):[Service]
 }
 type People {
-	  id:ID!
+    id:ID!
     Xid:String!
     firstName:String!
     lastName:String!
