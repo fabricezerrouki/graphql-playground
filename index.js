@@ -25,7 +25,6 @@ type People {
     firstName:String!
     lastName:String!
     email:String!
-    serviceId:String
     apps:[String]
     service:Service
 }
@@ -33,20 +32,23 @@ type Service {
 	  id:ID!
     name:String!
     location:String!
-    peoples:[People]
 }
 type Mutation {
-	createPerson(Xid: String!, firstName: String!, lastName: String!, email: String!, serviceId: String, apps: [String]): People
-  updatePerson(id: ID!,Xid: String, firstName: String, lastName: String, email: String, serviceId: String, apps: [String]): People
+	createPerson(Xid: String!, firstName: String!, lastName: String!, email: String!, service: String, apps: [String]): People
+  updatePerson(id: ID!,Xid: String, firstName: String, lastName: String, email: String, service: String, apps: [String]): People
 	deletePerson(id: ID!): People
+  createService(name: String!, location: String!): Service
+  updateService(id: ID!,name: String, location: String): Service
+  deleteService(id: ID!): Service
 }
 `
 const resolvers = {
   Query,
   Mutation
 }
+const port = 7777;
 const server = new GraphQLServer({
   typeDefs,
   resolvers
 })
-server.start({port: 7777}, () => console.log(`The server is up and running on http://localhost:7777`))
+server.start({port: port}, () => console.log(`The server is up and running on http://localhost:${port}`))
