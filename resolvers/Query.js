@@ -1,17 +1,12 @@
 const People = require('../database/people');
 const Service = require('../database/service');
+
+const types = {
+    People: { service: ({ service }) => Service.findById(service) },
+    Service: { id: ({_id}) => _id }
+  };
 const queries = {
-    People: async () => {
-      const people = await People.find({}).populate('service').exec()
-      return people.map(person => ({
-        ...person._doc,
-        id: person._doc._id,
-        service: {
-          ...person._doc.service._doc,
-          id: person._doc.service._doc._id,
-        },
-      }))
-    },
+    People: () => People.find({}),
     PeopleByName: (root,args,context,info) => People.find({lastName: args.lastName}),
     PeopleByID: (root,args,context,info) => People.find({_id: args.id}),
     PeopleByXid: (root,args,context,info) => People.find({Xid: args.Xid}),
