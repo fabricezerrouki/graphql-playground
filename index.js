@@ -12,7 +12,7 @@ const Service = require('./database/service');
 
 const typeDefs = `
 type Query {
-	People:[People]
+  People:[People]
   PeopleByName(lastName: String!):[People]
   PeopleByXid(Xid: String!):[People]
   PeopleByID(id:ID!):[People]
@@ -20,7 +20,7 @@ type Query {
   ServiceByID(id:ID!):[Service]
 }
 type People {
-	  id:ID!
+    id:ID!
     Xid:String!
     firstName:String!
     lastName:String!
@@ -29,14 +29,14 @@ type People {
     service:Service
 }
 type Service {
-	  id:ID!
+    id:ID!
     name:String!
     location:String!
 }
 type Mutation {
-	createPerson(Xid: String!, firstName: String!, lastName: String!, email: String!, service: String, apps: [String]): People
+  createPerson(Xid: String!, firstName: String!, lastName: String!, email: String!, service: String, apps: [String]): People
   updatePerson(id: ID!,Xid: String, firstName: String, lastName: String, email: String, service: String, apps: [String]): People
-	deletePerson(id: ID!): People
+  deletePerson(id: ID!): People
   createService(name: String!, location: String!): Service
   updateService(id: ID!,name: String, location: String): Service
   deleteService(id: ID!): Service
