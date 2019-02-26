@@ -7,7 +7,7 @@ const peopleSchema = new Schema({
     lastName: { type: String },
     email: { type: String },
     apps: { type: Array },
-    service: [{ type: Schema.Types.ObjectId, ref: 'service' }]
+    serviceId: { type: Schema.Types.ObjectId, ref: 'service' }
 },{ versionKey: false })
 
 module.exports = mongoose.model('people', peopleSchema);
