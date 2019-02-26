@@ -5,6 +5,8 @@ const types = {
     People: { service: ({ service }) => Service.findById(service) },
     Service: { id: ({_id}) => _id }
   };
+console.log(People)
+  
 const queries = {
     People: () => People.find({}),
     PeopleByName: (root,args,context,info) => People.find({lastName: args.lastName}),

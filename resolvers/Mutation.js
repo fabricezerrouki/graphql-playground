@@ -1,5 +1,6 @@
 const People = require('../database/people')
 const Service = require('../database/service')
+
 const mutations = {
     createPerson: async (parent, args) =>{
   		const newPerson = new People({
@@ -8,7 +9,7 @@ const mutations = {
   			lastName: args.lastName,
 			email: args.email,
 			apps: args.apps,
-			Service: args.serviceId
+			serviceId: args.serviceId
   		})
   		const error = await newPerson.save()
   		if(error) return error 
