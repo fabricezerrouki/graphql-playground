@@ -3,8 +3,8 @@ const db = mongoose.connect('mongodb://localhost:27017/graphql-mongo', { useNewU
    if (err) throw err;
    console.log('Successfully connected to MongoDB');
 });
-
 const { GraphQLServer } = require('graphql-yoga');
+
 const Mutation = require('./resolvers/Mutation');
 const Query = require('./resolvers/Query');
 const People = require('./database/people');
@@ -26,15 +26,16 @@ type People {
     lastName:String!
     email:String!
     apps:[String]
-    service:Service
+    serviceId:String
+    Service:[Service]
 }
 type Service {
     id:ID!
     name:String!
-    location:String!
+    location:String
 }
 type Mutation {
-    createPerson(Xid: String!, firstName: String!, lastName: String!, email: String!, service: String, apps: [String]): People
+    createPerson(Xid: String!, firstName: String!, lastName: String!, email: String!, serviceId: ID, apps: [String]): People
     updatePerson(id: ID!,Xid: String, firstName: String, lastName: String, email: String, service: String, apps: [String]): People
     deletePerson(id: ID!): People
     createService(name: String!, location: String!): Service
@@ -42,10 +43,12 @@ type Mutation {
     deleteService(id: ID!): Service
 }
 `
+
 const resolvers = {
   Query,
   Mutation
 }
+
 const port = 7777;
 const server = new GraphQLServer({
   typeDefs,
